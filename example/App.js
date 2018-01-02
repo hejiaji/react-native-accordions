@@ -1,8 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
-import Accordion from './components/Accordion/accordion';
-import HeaderIcon from './components/HeaderIcon/headerIcon';
+import Accordion from 'react-native-accordions';
 
+import HeaderIcon from './components/HeaderIcon/headerIcon';
 import BandageIcon from './images/bandaged/bandaged.png';
 import CallIcon from './images/call/call.png';
 import DislikeIcon from './images/dislike/dislike.png';
