@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import Accordion from './components/Accordion/accordion';
 import HeaderIcon from './components/HeaderIcon/headerIcon';
 
@@ -99,13 +99,13 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
         <Accordion
           sections={data}
           renderHeader={this.renderHeader}
           renderContent={this.renderContent}
         />
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -13,12 +13,6 @@ class Collapsible extends Component {
     };
   }
 
-  componentDidMount() {
-    setTimeout(() => {
-      this.measureContentHeight(() => {});
-    });
-  }
-
   componentWillReceiveProps(nextProps) {
     if (nextProps.collapsed !== this.props.collapsed) {
       this.toggleCollapsed(nextProps.collapsed);
