@@ -1,6 +1,6 @@
 {
   "name": "react-native-accordions",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A accordion component for ios and Andriod",
   "main": "index.js",
   "license": "MIT",
