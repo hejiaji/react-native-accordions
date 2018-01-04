@@ -10,6 +10,7 @@ class Collapsible extends Component {
       measured: false,
       translateValue: new Animated.Value(0),
       contentHeight: 0,
+      animating: false,
     };
   }
 
@@ -54,24 +55,25 @@ class Collapsible extends Component {
     if (this._animation) {
       this._animation.stop();
     }
+    this.setState({ animating: true });
     if (collapsed) {
       this._animation = Animated.timing(this.state.translateValue, {
         toValue: 0,
         duration: 195,
         easing: Easing.bezier(0.4, 0.0, 1, 1),
-      }).start();
+      }).start(() => this.setState({ animating:false }));
     } else {
       this._animation = Animated.timing(this.state.translateValue, {
         toValue: 1,
         duration: 225,
         easing: Easing.bezier(0.0, 0.0, 0.2, 1),
-      }).start();
+      }).start(() => this.setState({ animating:false }));
     }
   }
 
   render() {
     const { collapsed } = this.props;
-    const { measured, contentHeight } = this.state;
+    const { measured, contentHeight, animating } = this.state;
     const hasKnownHeight = measured || collapsed;
     const containerStyle = hasKnownHeight && {
         overflow: 'hidden',
@@ -84,14 +86,18 @@ class Collapsible extends Component {
       contentStyle.position = 'absolute';
       contentStyle.opacity = 0;
     }
-      return (
-        <Animated.View style={containerStyle}>
-          <View ref="content" style={contentStyle}>
-            {this.props.children}
-          </View>
-        </Animated.View>
-      );
-    }
+    return (
+      <Animated.View style={containerStyle}>
+        <View ref="content" style={contentStyle}
+          onLayout={(event) => {
+            !animating && this.setState({ contentHeight: event.nativeEvent.layout.height });
+          }}
+        >
+          {this.props.children}
+        </View>
+      </Animated.View>
+    );
+  }
 }
 
 Collapsible.propTypes = {
