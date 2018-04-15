@@ -15,8 +15,7 @@ class Collapsible extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.collapsed !== this.props.collapsed ||
-        nextProps.children !== this.props.children) {
+    if (nextProps.collapsed !== this.props.collapsed) {
       this.toggleCollapsed(nextProps.collapsed);
     }
   }
