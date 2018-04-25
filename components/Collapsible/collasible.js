@@ -76,7 +76,7 @@ class Collapsible extends Component {
     const { measured, contentHeight, animating } = this.state;
     const hasKnownHeight = measured || collapsed;
     const containerStyle = hasKnownHeight && {
-        overflow: 'hidden',
+        overflow: 'scroll',
         height: this.state.translateValue.interpolate(
           { inputRange: [0, 1], outputRange: [0, contentHeight] }
         ),
